@@ -9,9 +9,10 @@ describe('contact form', () => {
         cy.get('[data-cy="contact-btn-submit"]')
         .contains('Send Message')
         .and('not.have.attr', 'disabled');
-        cy.get('[data-cy="contact-btn-submit"]').click()
-        .contains('Sending...')
-        .should('have.attr', 'disabled');
+        cy.get('[data-cy="contact-btn-submit"]').as('submitBtn');
+        cy.get('@submitBtn').click()
+        cy.get('@submitBtn').contains('Sending...')
+        cy.get('@submitBtn').should('have.attr', 'disabled');
         
     })
 })
