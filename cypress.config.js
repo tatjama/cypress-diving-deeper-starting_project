@@ -6,6 +6,13 @@ export default defineConfig({
     screenshotOnRunFailure: true,
     setupNodeEvents(on, config) {
       // implement node event listeners here
+      on('task', {
+        seedDatabase(file) {
+          // some Node code
+          // e.g. edit some file here
+          return file
+        }
+      })
     },
   },
 });

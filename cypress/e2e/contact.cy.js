@@ -16,6 +16,9 @@ describe('contact form', () => {
   })
 
   it('should submit form', () => {
+    cy.task('seedDatabase', 'filename.csv').then(returnvalue => {
+      //... use some return value
+    });
     cy.getById("contact-input-message").type('Hello World!');
     cy.getById("contact-input-name").type('tanja');
     cy.get('[data-cy="contact-btn-submit"]').then((el) => {
