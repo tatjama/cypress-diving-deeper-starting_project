@@ -16,18 +16,18 @@ describe('contact form', () => {
   })
 
   it('should submit form', () => {
-    cy.get('[data-cy="contact-input-message"]').type('Hello World!');
-    cy.get('[data-cy="contact-input-name"]').type('tanja');
+    cy.getById("contact-input-message").type('Hello World!');
+    cy.getById("contact-input-name").type('tanja');
     cy.get('[data-cy="contact-btn-submit"]').then((el) => {
       expect(el.attr('disabled')).to.be.undefined;
       expect(el.text()).to.eq('Send Message');
     });
-    cy.get('[data-cy="contact-input-email"]').type('tanja120a@gmail.com');
+    cy.getById("contact-input-email").type('tanja120a@gmail.com');
     cy.submitForm();
     //cy.get('[data-cy="contact-btn-submit"]')
     //.contains('Send Message')
     //.and('not.have.attr', 'disabled');
-    cy.get('[data-cy="contact-btn-submit"]').as('submitBtn');
+    cy.getById("contact-btn-submit").as('submitBtn');
     //cy.get('@submitBtn').click()
     cy.get('@submitBtn').contains('Sending...')
     cy.get('@submitBtn').should('have.attr', 'disabled');        
@@ -41,18 +41,18 @@ describe('contact form', () => {
     });
     cy.get('[data-cy="contact-btn-submit"]').contains('Send Message');
     
-    cy.get('[data-cy="contact-input-message"]').blur();
-    cy.get('[data-cy="contact-input-message"]')
+    cy.getById("contact-input-message").blur();
+    cy.getById("contact-input-message")
       .parent()
       .should('have.attr', 'class').and('match', /invalid/);
     
-    cy.get('[data-cy="contact-input-name"]').focus().blur();
-    cy.get('[data-cy="contact-input-name"]')
+    cy.getById("contact-input-name").focus().blur();
+    cy.getById("contact-input-name")
       .parent()
       .should('have.attr', 'class').and('match', /invalid/);
     cy.screenshot();
-    cy.get('[data-cy="contact-input-email"]').focus().blur();
-    cy.get('[data-cy="contact-input-email"]')
+    cy.getById("contact-input-email").focus().blur();
+    cy.getById("contact-input-email")
       .parent()
       .should((el) => {
         expect(el.attr('class')).to.contains('invalid');
